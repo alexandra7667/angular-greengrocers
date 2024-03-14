@@ -13,6 +13,7 @@ export class GreensService {
     this.getItems(); //kör getItems när man startar program
   }
 
+  allItems: any;
   items: any;
   cartItems: CartItem[] = [];
   total: number = 0;
@@ -40,6 +41,30 @@ export class GreensService {
       this.http.get(`${environment.apiUrl}groceries`)
     );
     this.items = result;
+    this.allItems = result;
+    return this.items;
+  }
+
+  //Add a button to Filter the store items by type. type is fruit or vegetable
+  async filterByTypeVegetable() {
+    //visa endast type=vegetable
+    // @ts-ignore
+    const filteredForVegetables = this.allItems.filter((item: Item) => item.type === 'vegetable');
+    this.items = filteredForVegetables;
+    return this.items;
+  }
+
+  async filterByTypeFruit() {
+    //visa endast type=fruit
+    // @ts-ignore
+    const filteredForVegetables = this.allItems.filter((item: Item) => item.type === 'fruit');
+    this.items = filteredForVegetables;
+    return this.items;
+  }
+
+  //Visa båda typer
+  async showAllTypes() {
+    this.items = this.allItems;
     return this.items;
   }
 

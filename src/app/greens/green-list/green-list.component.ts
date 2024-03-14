@@ -24,4 +24,21 @@ export class GreenListComponent {
     await this.greensService.addToCart(item);
     this.items = this.greensService.items;
   }
+
+  //Filtrera efter typ vegetable
+  async filterByTypeVegetable() {
+    await this.greensService.filterByTypeVegetable();
+    this.items = this.greensService.items;
+  }
+
+  async filterByTypeFruit() {
+    await this.greensService.filterByTypeFruit();
+    this.items = this.greensService.items;
+  }
+
+  //Visa båda typer
+  async showAllTypes() {
+    await this.greensService.showAllTypes();
+    this.items = this.greensService.items;
+  }
 }

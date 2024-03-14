@@ -1,3 +1,8 @@
+<button (click)="showAllTypes()">Show all</button>
+<br>
+<button (click)="filterByTypeVegetable()">Only vegetables</button>
+<button (click)="filterByTypeFruit()">Only fruit</button>
+
 <div class="store--item-list">
   <app-green-item
     *ngFor="let item of items"
