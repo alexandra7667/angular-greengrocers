@@ -48,21 +48,18 @@ export class GreensService {
     // @ts-ignore
     const filteredForVegetables = this.allItems.filter((item: Item) => item.type === 'vegetable');
     this.items = filteredForVegetables;
-    return this.items;
   }
 
   filterByTypeFruit() {
     //visa endast type=fruit
     // @ts-ignore
-    const filteredForVegetables = this.allItems.filter((item: Item) => item.type === 'fruit');
-    this.items = filteredForVegetables;
-    return this.items;
+    const filteredForFruit = this.allItems.filter((item: Item) => item.type === 'fruit');
+    this.items = filteredForFruit;
   }
 
   //Visa båda typer
   showAllTypes() {
     this.items = this.allItems;
-    return this.items;
   }
 
   //Add a button to Sort the store items by price
