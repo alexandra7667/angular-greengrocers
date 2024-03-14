@@ -1,0 +1,27 @@
+import { Component } from '@angular/core';
+import { GreensService } from '../services/greens.service';
+import { Item } from '../models/item';
+
+@Component({
+  selector: 'app-green-list',
+  templateUrl: './green-list.component.html',
+  styleUrls: ['./green-list.component.css']
+})
+export class GreenListComponent {
+  constructor(private readonly greensService: GreensService) {
+    this.fetchItems();
+  }
+
+  items: any;
+
+  //Vänta på att data hämtats
+  async fetchItems() {
+    this.items = await this.greensService.getItems();
+  }
+
+  //Kod för att lägga till items i cart
+  async addToCart(item: Item) {
+    await this.greensService.addToCart(item);
+    this.items = this.greensService.items;
+  }
+}

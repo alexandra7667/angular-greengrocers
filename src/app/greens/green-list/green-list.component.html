@@ -1,0 +1,10 @@
+
+<app-green-item
+  *ngFor="let item of items"
+  [item]="item"
+  (add)="addToCart($event)"
+></app-green-item>
+
+<!---
+metoden add länkar till metoden i service
+-->

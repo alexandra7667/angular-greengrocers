@@ -1,0 +1,10 @@
+<div class="cart--item-list-container">
+  <div class="item-list cart--item-list">
+    <app-cart-item
+      *ngFor="let cartItem of cartItems"
+      [cartItem]="cartItem"
+      (decrement)="decrement($event)"
+      (increment)="increment($event)"
+    ></app-cart-item>
+  </div>
+</div>

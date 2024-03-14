@@ -1,0 +1,8 @@
+<div class="item-list store--item-list">
+  <div class="store--item-icon">
+    <ng-template [ngIf]="item">
+      <img class="pictures" src="../../../assets/icons/{{ item.id }}.svg" />
+      <button (click)="addBtnClicked()">Add to cart</button>
+    </ng-template>
+  </div>
+</div>
