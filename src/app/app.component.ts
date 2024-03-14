@@ -14,7 +14,6 @@ export class AppComponent {
   ngOnInit() {
     // Subscribe to the observable in the service to receive updates to the total
     this.greensService.total$.subscribe((updatedTotal: number) => {
-      console.log("in app. total: " + this.total)
       this.total = updatedTotal;
     });
   }

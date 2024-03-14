@@ -15,30 +15,30 @@ export class GreensService {
 
   items: any;
   cartItems: CartItem[] = [];
-  total: any;
+  total: number = 0;
 
-    //Visa total
-    private totalSource = new BehaviorSubject<any>(null);
-    total$ = this.totalSource.asObservable();
-  
-    updateTotal() {
-      let totalPrice: number = 0;
+  //Visa total
+  private totalSource = new BehaviorSubject<any>(null);
+  total$ = this.totalSource.asObservable();
 
-      for (let item of this.cartItems) {
-        const price = item.price;
-        const quantity = item.quantity;
-        const itemPrice = price * quantity;
-        totalPrice += itemPrice;
-      }
+  updateTotal() {
+    let totalPrice: number = 0;
 
-      console.log("in service updateTotal: " + totalPrice)
-
-      this.totalSource.next(totalPrice);
+    for (let item of this.cartItems) {
+      const price = item.price;
+      const quantity = item.quantity;
+      const itemPrice = price * quantity;
+      totalPrice += itemPrice;
     }
+
+    this.totalSource.next(totalPrice);
+  }
 
   //GET all items
   async getItems(): Promise<Item[]> {
-    const result = await firstValueFrom(this.http.get(`${environment.apiUrl}groceries`));
+    const result = await firstValueFrom(
+      this.http.get(`${environment.apiUrl}groceries`)
+    );
     this.items = result;
     return this.items;
   }
@@ -73,7 +73,9 @@ export class GreensService {
 
   // Dekrementera quantity hos ett item i cart
   async decrement(cartItem: CartItem) {
-    const index = this.cartItems.findIndex((item: CartItem) => item.id === cartItem.id);
+    const index = this.cartItems.findIndex(
+      (item: CartItem) => item.id === cartItem.id
+    );
     this.cartItems[index].quantity--;
 
     //Kolla om quantity är 0. I så fall - ta bort ur cart
@@ -86,7 +88,9 @@ export class GreensService {
 
   // Inkrementera quantity hos ett item i cart
   async increment(cartItem: CartItem) {
-    const index = this.cartItems.findIndex((item: CartItem) => item.id === cartItem.id);
+    const index = this.cartItems.findIndex(
+      (item: CartItem) => item.id === cartItem.id
+    );
     this.cartItems[index].quantity++;
 
     this.updateTotal();
