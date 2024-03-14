@@ -22,17 +22,14 @@ export class GreensService {
   private totalSource = new BehaviorSubject<any>(null);
   total$ = this.totalSource.asObservable();
 
-  updateTotal() {
-    let totalPrice: number = 0;
+  addToTotal(amount: number) {
+    const newTotal = this.total += amount;
+    this.totalSource.next(newTotal);
+  }
 
-    for (let item of this.cartItems) {
-      const price = item.price;
-      const quantity = item.quantity;
-      const itemPrice = price * quantity;
-      totalPrice += itemPrice;
-    }
-
-    this.totalSource.next(totalPrice);
+  subtractFromTotal(amount: number) {
+    const newTotal = this.total -= amount;
+    this.totalSource.next(newTotal);
   }
 
   //GET all items
@@ -68,7 +65,6 @@ export class GreensService {
     return this.items;
   }
 
-
   //Add a button to Sort the store items by price
   sortByPrice() {
     this.items.sort((a: { price: number; }, b: { price: number; }) => a.price - b.price);
@@ -98,7 +94,7 @@ export class GreensService {
       };
 
       this.cartItems.push(cartItem);
-      this.updateTotal();
+      this.addToTotal(item.price);
     }
   }
 
@@ -119,7 +115,7 @@ export class GreensService {
       this.cartItems.splice(index, 1);
     }
 
-    this.updateTotal();
+    this.subtractFromTotal(cartItem.price);
   }
 
   // Inkrementera quantity hos ett item i cart
@@ -129,6 +125,6 @@ export class GreensService {
     );
     this.cartItems[index].quantity++;
 
-    this.updateTotal();
+    this.addToTotal(cartItem.price);
   }
 }
