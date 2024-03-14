@@ -5,7 +5,7 @@ import { Item } from '../models/item';
 @Component({
   selector: 'app-green-list',
   templateUrl: './green-list.component.html',
-  styleUrls: ['./green-list.component.css']
+  styleUrls: ['./green-list.component.css'],
 })
 export class GreenListComponent {
   constructor(private readonly greensService: GreensService) {
@@ -20,37 +20,37 @@ export class GreenListComponent {
   }
 
   //Kod för att lägga till items i cart
-  async addToCart(item: Item) {
-    await this.greensService.addToCart(item);
+  addToCart(item: Item) {
+    this.greensService.addToCart(item);
     this.items = this.greensService.items;
   }
 
   //Filtrera efter typ vegetable
-  async filterByTypeVegetable() {
-    await this.greensService.filterByTypeVegetable();
+  filterByTypeVegetable() {
+    this.greensService.filterByTypeVegetable();
     this.items = this.greensService.items;
   }
 
-  async filterByTypeFruit() {
-    await this.greensService.filterByTypeFruit();
+  filterByTypeFruit() {
+    this.greensService.filterByTypeFruit();
     this.items = this.greensService.items;
   }
 
   //Visa båda typer
-  async showAllTypes() {
-    await this.greensService.showAllTypes();
+  showAllTypes() {
+    this.greensService.showAllTypes();
     this.items = this.greensService.items;
   }
 
   //Sortera efter pris
-  async sortByPrice() {
-    await this.greensService.sortByPrice();
+  sortByPrice() {
+    this.greensService.sortByPrice();
     this.items = this.greensService.items;
   }
 
-    //Sortera efter namn
-    async sortByName() {
-      await this.greensService.sortByName();
-      this.items = this.greensService.items;
-    }
+  //Sortera efter namn
+  sortByName() {
+    this.greensService.sortByName();
+    this.items = this.greensService.items;
+  }
 }

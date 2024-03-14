@@ -36,7 +36,7 @@ export class GreensService {
   }
 
   //GET all items
-  async getItems(): Promise<Item[]> {
+  async getItems(): Promise<Item[]> { //Must be async bc get request is an async operation which returns a promise
     const result = await firstValueFrom(
       this.http.get(`${environment.apiUrl}groceries`)
     );
@@ -46,7 +46,7 @@ export class GreensService {
   }
 
   //Add a button to Filter the store items by type. type is fruit or vegetable
-  async filterByTypeVegetable() {
+  filterByTypeVegetable() {
     //visa endast type=vegetable
     // @ts-ignore
     const filteredForVegetables = this.allItems.filter((item: Item) => item.type === 'vegetable');
@@ -54,7 +54,7 @@ export class GreensService {
     return this.items;
   }
 
-  async filterByTypeFruit() {
+  filterByTypeFruit() {
     //visa endast type=fruit
     // @ts-ignore
     const filteredForVegetables = this.allItems.filter((item: Item) => item.type === 'fruit');
@@ -63,24 +63,24 @@ export class GreensService {
   }
 
   //Visa båda typer
-  async showAllTypes() {
+  showAllTypes() {
     this.items = this.allItems;
     return this.items;
   }
 
 
   //Add a button to Sort the store items by price
-  async sortByPrice() {
+  sortByPrice() {
     this.items.sort((a: { price: number; }, b: { price: number; }) => a.price - b.price);
   }
 
   //Add a button to Sort the store items by name
-  async sortByName() {
+  sortByName() {
     this.items.sort((a: { name: string; }, b: { name: string; }) => a.name.localeCompare(b.name));
   }
 
   //Add to cart
-  async addToCart(item: Item) {
+  addToCart(item: Item) {
     //see if it is already in cart, then increment quantity instead of adding to cart
     const index = this.cartItems.findIndex(
       (cartItem: CartItem) => cartItem.id === item.id
@@ -108,7 +108,7 @@ export class GreensService {
   }
 
   // Dekrementera quantity hos ett item i cart
-  async decrement(cartItem: CartItem) {
+  decrement(cartItem: CartItem) {
     const index = this.cartItems.findIndex(
       (item: CartItem) => item.id === cartItem.id
     );
@@ -123,7 +123,7 @@ export class GreensService {
   }
 
   // Inkrementera quantity hos ett item i cart
-  async increment(cartItem: CartItem) {
+  increment(cartItem: CartItem) {
     const index = this.cartItems.findIndex(
       (item: CartItem) => item.id === cartItem.id
     );
