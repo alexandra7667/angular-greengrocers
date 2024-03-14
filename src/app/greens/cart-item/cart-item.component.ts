@@ -13,16 +13,13 @@ export class CartItemComponent {
 
   decrementBtnClicked() {
     if (this.cartItem) {
-      console.log("in decrement btn clicked: " + this.cartItem.name)
       this.decrement.emit(this.cartItem);
     }
   }
 
   incrementBtnClicked() {
     if (this.cartItem) {
-      console.log("in increment btn clicked: " + this.cartItem.name)
       this.increment.emit(this.cartItem);
-      console.log("sent to cart list... ")
     }
   }
 }

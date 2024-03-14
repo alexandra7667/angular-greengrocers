@@ -12,7 +12,6 @@ export class GreenItemComponent {
 
   addBtnClicked() {
     if (this.item) {
-      console.log("in add btn clicked: " + this.item.name)
       this.add.emit(this.item);
     }
   }

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { GreensService } from './greens/services/greens.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,17 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  constructor(private greensService: GreensService) {}
+
+  total: number = 0;
+  //Get total from service
+  ngOnInit() {
+    // Subscribe to the observable in the service to receive updates to the total
+    this.greensService.total$.subscribe((updatedTotal: number) => {
+      console.log("in app. total: " + this.total)
+      this.total = updatedTotal;
+    });
+  }
+
   title = 'angular-green-grocers';
 }
