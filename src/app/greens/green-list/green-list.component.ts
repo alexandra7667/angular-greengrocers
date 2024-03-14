@@ -41,4 +41,16 @@ export class GreenListComponent {
     await this.greensService.showAllTypes();
     this.items = this.greensService.items;
   }
+
+  //Sortera efter pris
+  async sortByPrice() {
+    await this.greensService.sortByPrice();
+    this.items = this.greensService.items;
+  }
+
+    //Sortera efter namn
+    async sortByName() {
+      await this.greensService.sortByName();
+      this.items = this.greensService.items;
+    }
 }

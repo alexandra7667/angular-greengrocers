@@ -68,6 +68,17 @@ export class GreensService {
     return this.items;
   }
 
+
+  //Add a button to Sort the store items by price
+  async sortByPrice() {
+    this.items.sort((a: { price: number; }, b: { price: number; }) => a.price - b.price);
+  }
+
+  //Add a button to Sort the store items by name
+  async sortByName() {
+    this.items.sort((a: { name: string; }, b: { name: string; }) => a.name.localeCompare(b.name));
+  }
+
   //Add to cart
   async addToCart(item: Item) {
     //see if it is already in cart, then increment quantity instead of adding to cart
